@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        *{
+            color: white;
+        }
+        .szo{
+            color: white;
+            font-size: x-large;
+        }
+        body{
+            background-color: rgba(0, 0, 0, 0.829);
+        }
+        .koz{
+            display: flex;
+            justify-content: center;
+        }
+        .inp{
+            margin: 20px 50px;
+            padding: 10px 30px;
+        
+        }
+        .be{
+            border: 3px solid rgb(37, 46, 182);
+            background-color: rgb(0,0,0, 0.1);
+            border-radius: 10px;
+        }
+        .container{
+            max-width: 800px;
+        }
+        .butony{
+            display: flex;
+            justify-content: center;
+            margin: 25px 5px;
+
+        }
+        .szam{
+            border: 3px solid rgb(37, 46, 182);
+            color: white;
+            
+        }
+        .szam:hover{
+            border: 3px solid rgb(37, 46, 182);
+            background-color: rgb(37, 46, 182);
+        }
+        .cle{
+            color: white;
+            border: 3px solid rgb(179, 33, 33);
+        }
+        .cle:hover{
+            border: 3px solid rgb(179, 33, 33);
+            background-color: rgb(179, 33, 33);
+        }
+        
+        .ko{
+            margin: 75px 0; 
+            border: 10px solid rgb(37, 46, 182);
+            background-color: rgba(0, 0, 0, 0.829);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ko">
+            <p class="koz inp szo">BMI calculator</p>
+            <div class=" koz">
+                <input type="number" class="kg inp be" placeholder="kg">
+                
+            </div>
+            <div class="koz">  
+                <input type="number" class="cm inp be" placeholder="cm">
+            </div>
+            <div class="koz">
+                <button class="btn butony szam" onclick="calcium()">Számolás</button>
+                <button type="reset" class="btn butony cle" onclick="cleari()"> Clear</button>
+            </div>
+          
+            <div class="bmi inp koz szo"></div>
+            <div class="cat inp koz szo"></div>
+            
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        const rules = [
+            {min: 0,max: 18.4, ctg: "Underweight ", emoji: "😶"},
+            {min: 18.5, max: 24.9, ctg: "Normal ", emoji: "😀"},
+            {min: 25, max: 29.9, ctg:"Overweight ", emoji: "😐"},
+            {min: 30, max: 34.9, ctg:"Obese ", emoji: "😑" },
+            {min: 35, max: 100, ctg: "Extremly obese ", emoji: "😣"}
+        ]
+        function calcium(){
+            let kg =+ document.querySelector(".kg").value
+            let cm =+ document.querySelector(".cm").value
+        
+            let bmi = kg / (cm / 100)**2
+            let result = rules.find(obj=>obj.min<bmi && obj.max >= bmi)
+            
+            document.querySelector(".bmi").innerHTML = `BMI: ${bmi}`
+            document.querySelector(".cat").innerHTML = `Category: ${result.ctg}${result.emoji}`
+        }
+        function cleari(){
+            document.querySelector(".kg").value = ""
+            document.querySelector(".cm").value = ""
+        }
+
+
+
+        //let diak ={
+        //    nev: "gyula",
+        //    szak: "info",
+        //    szev:2006,
+        //    jegy:5
+        //}
+        //console.log(diak["nev"])
+        //console.log(diak.nev);
+        //diak.szev = 2375
+        //console.log(diak.szev);
+        //diak?.jegy && console.log(diak.jegy);
+        //diak.newattribute = "stringusz..."
+        //console.log(diak);
+
+
+
+    </script>
+</body>
+</html>
